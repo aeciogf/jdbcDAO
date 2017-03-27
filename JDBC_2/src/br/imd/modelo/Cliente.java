@@ -1,16 +1,20 @@
 package br.imd.modelo;
 
+import java.util.Date;
+
 public class Cliente {
 
-	private int cliente;
-	private String nome;
+	private int idCliente;
+	private String nomeCliente;
 	private String cpf;
+	private Date dataNasc;
 	
-	public Cliente(int cliente, String nome, String cpf) {
+	public Cliente(int idCliente, String nomeCliente, String cpf, Date dataNasc) {
 		super();
-		this.cliente = cliente;
-		this.nome = nome;
+		this.idCliente = idCliente;
+		this.nomeCliente = nomeCliente;
 		this.cpf = cpf;
+		this.dataNasc = dataNasc;
 	}
 
 	
@@ -19,23 +23,43 @@ public class Cliente {
 	}
 
 
-	public int getCliente() {
-		return cliente;
+	public int getIdCliente() {
+		return idCliente;
 	}
-	public void setCliente(int cliente) {
-		this.cliente = cliente;
+
+
+	public void setIdCliente(int idCliente) {
+		this.idCliente = idCliente;
 	}
-	public String getNome() {
-		return nome;
+
+
+	public String getNomeCliente() {
+		return nomeCliente;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+
+
+	public void setNomeCliente(String nomeCliente) {
+		this.nomeCliente = nomeCliente;
 	}
+
+
 	public String getCpf() {
 		return cpf;
 	}
+
+
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+
+
+	public Date getDataNasc() {
+		return dataNasc;
+	}
+
+
+	public void setDataNasc(Date dataNasc) {
+		this.dataNasc = dataNasc;
 	}
 	
 }

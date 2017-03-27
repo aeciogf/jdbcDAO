@@ -18,27 +18,29 @@ public class ClienteDAO {
 	}
 	
 	public void inserirCliente(Cliente cliente) throws SQLException{
-		String sql = "insert into cliente values (default, ?, ?)";
+		String sql = "insert into cliente values (default, ?, ?, ?)";
 		PreparedStatement pstmt = Conexao.getConnection().prepareStatement(sql);
 		
-		pstmt.setString(1,  cliente.getNome());
+		pstmt.setString(1,  cliente.getNomeCliente());
 		pstmt.setString(2, cliente.getCpf());
+		pstmt.setDate(3, cliente.getDataNasc());
+		
 		pstmt.execute();
 		conn.commit();
 		pstmt.close();
-		System.out.println("Cliente " +	cliente.getNome()+ " cadastrado.");
+		System.out.println("Cliente " +	cliente.getNomeCliente()+ " cadastrado.");
 
 	}
 	
 	public void alterarCliente(Cliente cliente) throws SQLException{
 			String sql = "update cliente set nome = ? where cpf = ?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, cliente.getNome());
+			pstmt.setString(1, cliente.getNomeCliente());
 			pstmt.setString(2, cliente.getCpf());
 			pstmt.execute();
 			conn.commit();
 			pstmt.close();
-			System.out.println("Cliente " +	cliente.getNome()+ " alterado.");
+			System.out.println("Cliente " +	cliente.getNomeCliente()+ " alterado.");
 	}
 
 	public void deletarCliente(Cliente cliente)	throws SQLException{
@@ -53,16 +55,16 @@ public class ClienteDAO {
 	}
 	
 	public List<Cliente> listar() throws SQLException {
-		PreparedStatement pst = null;
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		pst = conn.prepareStatement("Select * from cliente");
+		pstmt = conn.prepareStatement("Select * from cliente");
 		List<Cliente> clientes = new ArrayList<Cliente>();
-		rs = pst.executeQuery();
+		rs = pstmt.executeQuery();
 		while(rs.next()){
-		Cliente c = new Cliente();
-		c.setNome(rs.getString("nome"));
-		c.setCpf(rs.getString("cpf"));
-		clientes.add(c);
+			Cliente c = new Cliente();
+			c.setNomeCliente(rs.getString("nome"));
+			c.setCpf(rs.getString("cpf"));
+			clientes.add(c);
 		}
 		return clientes;
 	} 
